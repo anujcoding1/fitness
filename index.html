@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife - Your Ultimate Fitness Destination</title>
+    <style>
+        /* CSS Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --accent: #3498db;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--dark);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .workouts {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .workouts .section-title h2 {
+            color: white;
+        }
+        
+        .workouts .section-title h2::after {
+            background-color: var(--accent);
+        }
+        
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .workout-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .workout-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .workout-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .workout-content {
+            padding: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .workout-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .workout-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .trainers {
+            text-align: center;
+        }
+        
+        .trainer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .trainer-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .trainer-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .trainer-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .trainer-info {
+            padding: 1.5rem;
+        }
+        
+        .trainer-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .trainer-info p {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .contact {
+            background-color: var(--light);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            margin-right: 1rem;
+            color: var(--secondary);
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-social {
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-social a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-social a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav {
+                margin-top: 1rem;
+                width: 100%;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 1s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* BMI Calculator Styles */
+        .bmi-calculator {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .bmi-calculator h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .bmi-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .bmi-result {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Fit<span>Life</span></a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#workouts">Workouts</a></li>
+                    <li><a href="#trainers">Trainers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" id="bmi-btn">BMI Calculator</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-in">
+            <h1>Transform Your Body, Transform Your Life</h1>
+            <p>Join thousands of members achieving their fitness goals with our personalized training programs and expert guidance.</p>
+            <div class="btn-container">
+                <a href="#workouts" class="btn">Get Started</a>
+                <a href="#features" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+            </div>
+            <div class="features">
+                <div class="feature-card slide-up" style="animation-delay: 0.1s;">
+                    <div class="feature-icon">💪</div>
+                    <h3>Personalized Plans</h3>
+                    <p>Custom workout and nutrition plans tailored to your specific goals and fitness level.</p>
+                </div>
+                <div class="feature-card slide-up" style="animation-delay: 0.2s;">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Expert Trainers</h3>
+                    <p>Certified professionals with years of experience to guide you every step of the way.</p>
+                </div>
+                <div class="feature-card slide-up" style="animation-delay: 0.3s;">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile App</h3>
+                    <p>Track your progress, access workouts, and connect with trainers anytime, anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workouts Section -->
+    <section id="workouts" class="workouts section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Workouts</h2>
+            </div>
+            <div class="workout-grid">
+                <div class="workout-card slide-up" style="animation-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Strength Training" class="workout-img">
+                    <div class="workout-content">
+                        <h3>Strength Training</h3>
+                        <p>Build muscle and increase strength with our targeted weight training programs.</p>
+                        <a href="#" class="btn">View Program</a>
+                    </div>
+                </div>
+                <div class="workout-card slide-up" style="animation-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="HIIT" class="workout-img">
+                    <div class="workout-content">
+                        <h3>HIIT</h3>
+                        <p>High-intensity interval training to burn fat and improve cardiovascular health.</p>
+                        <a href="#" class="btn">View Program</a>
+                    </div>
+                </div>
+                <div class="workout-card slide-up" style="animation-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Yoga" class="workout-img">
+                    <div class="workout-content">
+                        <h3>Yoga & Flexibility</h3>
+                        <p>Improve flexibility, balance, and mental clarity with our yoga programs.</p>
+                        <a href="#" class="btn">View Program</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Trainers Section -->
+<section id="trainers" class="trainers section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Meet Our Trainers</h2>
+        </div>
+        <div class="trainer-grid">
+            <div class="trainer-card slide-up" style="animation-delay: 0.1s;">
+                <a href="#" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sandy Baisoya" class="trainer-img">
+                </a>
+                <div class="trainer-info">
+                    <h3>Sandy Baisoya</h3>
+                    <p>Tiger Trainer</p>
+                    <p>Specializes in high-intensity animal flow workouts and primal movement training.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/a._.gurjar?igsh=eXpmcThvMzFzcnRy&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="trainer-card slide-up" style="animation-delay: 0.2s;">
+                <a href="#" target="_blank">
+                 <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Trainer 2" class="trainer-img">
+                </a>
+                <div class="trainer-info">
+                    <h3>Neeraj Pepsu</h3>
+                    <p>Strength Coach</p>
+                    <p>Powerlifting specialist with 8+ years of competitive experience.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/a._.gurjar?igsh=eXpmcThvMzFzcnRy&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="trainer-card slide-up" style="animation-delay: 0.3s;">
+                <a href="#" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nitin Chandila" class="trainer-img">
+                </a>
+                <div class="trainer-info">
+                    <h3>Nitin Chandila</h3>
+                    <p>Functional Fitness Expert</p>
+                    <p>CrossFit Level 2 trainer with focus on mobility and endurance.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/a._.gurjar?igsh=eXpmcThvMzFzcnRy&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info slide-up" style="animation-delay: 0.1s;">
+                    <h3>Contact Information</h3>
+                    <div class="contact-details">
+                        <p><span>📌</span> 123 Fitness Greater noida UP 2032087</p>
+                        <p><span>📞</span> (+91) 9891996651</p>
+                        <p><span>✉️</span> info@fitlife.com</p>
+                    </div>
+                    <h3>Opening Hours</h3>
+                    <p>Monday - Friday: 6:00 AM - 10:00 PM</p>
+                    <p>Saturday - Sunday: 8:00 AM - 8:00 PM</p>
+                </div>
+                <div class="contact-form slide-up" style="animation-delay: 0.2s;">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Fit<span>Life</span></div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#workouts">Workouts</a>
+                    <a href="#trainers">Trainers</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#" id="footer-bmi-btn">BMI Calculator</a>
+                </div>
+                <div class="footer-social">
+                    <a href=https://www.facebook.com/share/1ANDFcrHfx/?mibextid=wwXIfr target="_blank"><span>FB</span></a>
+    <a href="https://www.instagram.com/a._.gurjar?igsh=eXpmcThvMzFzcnRy&utm_source=qr" target="_blank"><span>IG</span></a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 FitLife. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BMI Calculator Modal -->
+    <div class="modal" id="bmi-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="bmi-calculator">
+                <h3>BMI Calculator</h3>
+                <form class="bmi-form" id="bmi-form">
+                    <div class="form-group">
+                        <label for="height">Height (cm)</label>
+                        <input type="number" id="height" name="height" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" name="weight" required>
+                    </div>
+                    <button type="submit" class="btn">Calculate BMI</button>
+                </form>
+                <div class="bmi-result" id="bmi-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top">↑</div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav ul');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    nav.style.display = 'none';
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // BMI Calculator
+        const bmiModal = document.getElementById('bmi-modal');
+        const bmiBtn = document.getElementById('bmi-btn');
+        const footerBmiBtn = document.getElementById('footer-bmi-btn');
+        const closeModal = document.querySelector('.close-modal');
+        const bmiForm = document.getElementById('bmi-form');
+        const bmiResult = document.getElementById('bmi-result');
+        
+        // Open modal
+        bmiBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            bmiModal.style.display = 'flex';
+        });
+        
+        footerBmiBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            bmiModal.style.display = 'flex';
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            bmiModal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === bmiModal) {
+                bmiModal.style.display = 'none';
+            }
+        });
+        
+        // Calculate BMI
+        bmiForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const height = parseFloat(document.getElementById('height').value) / 100; // convert to meters
+            const weight = parseFloat(document.getElementById('weight').value);
+            
+            if (height && weight) {
+                const bmi = (weight / (height * height)).toFixed(1);
+                let category = '';
+                let color = '';
+                
+                if (bmi < 18.5) {
+                    category = 'Underweight';
+                    color = '#3498db'; // blue
+                } else if (bmi >= 18.5 && bmi < 25) {
+                    category = 'Normal weight';
+                    color = '#2ecc71'; // green
+                } else if (bmi >= 25 && bmi < 30) {
+                    category = 'Overweight';
+                    color = '#f39c12'; // orange
+                } else {
+                    category = 'Obese';
+                    color = '#e74c3c'; // red
+                }
+                
+                bmiResult.innerHTML = `
+                    <p>Your BMI: <strong>${bmi}</strong></p>
+                    <p>Category: <strong style="color: ${color}">${category}</strong></p>
+                `;
+                bmiResult.style.display = 'block';
+            }
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the data to a server
+            // For this example, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been received. We'll contact you at ${email} soon.`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Initialize animation state
+        document.querySelectorAll('.slide-up').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
